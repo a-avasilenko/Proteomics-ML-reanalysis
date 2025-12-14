@@ -64,7 +64,7 @@ proteomics-ml-reanalysis/
 ### Setup
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/proteomics-ml-reanalysis.git
+git clone https://github.com/a-avasilenko/proteomics-ml-reanalysis.git
 cd proteomics-ml-reanalysis
 
 # Install dependencies

@@ -1,4 +1,4 @@
-# Comparative Analysis of Statistical Methods for Proteomics Biomarker Discovery
+# Integrating Machine Learning with Traditional Statistics for Proteomics Biomarker Discovery
 
 > **Reanalysis of AKI proteomics data demonstrating how multivariate machine learning methods complement traditional statistics in small-sample biomarker discovery**
 

@@ -1,0 +1,115 @@
+# Comparative Analysis of Statistical Methods for Proteomics Biomarker Discovery
+
+> **Reanalysis of AKI proteomics data demonstrating how multivariate machine learning methods complement traditional statistics in small-sample biomarker discovery**
+
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
+[![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange)](https://jupyter.org/)
+
+## Overview
+
+This project integrates traditional statistics with machine learning to identify biomarker candidates in proteomics data with small sample sizes (n=3). By applying PCA and LASSO to LC-MS/MS data from Sus scrofa kidney samples, we identified both validated high-confidence biomarkers and novel candidates missed by conventional univariate analysis.
+
+**Key Finding**: 50% of top traditional statistical findings were validated by LASSO, while multivariate methods identified 20 additional proteins with substantial fold changes (up to 2.17×) that lacked statistical significance due to limited power.
+
+## Dataset
+
+- **Organism**: *Sus scrofa* (pig) kidney - translational model for human AKI
+- **Samples**: n=3 AKI+Treatment vs n=3 AKI Control
+- **Coverage**: 2,561 proteins quantified by LC-MS/MS
+
+## Methods
+
+### Traditional Statistics
+- Shapiro-Wilk normality testing
+- Mann-Whitney U / t-test for differential expression
+- Benjamini-Hochberg FDR correction (α = 0.05)
+- Effect size filtering: |log₂FC| > 0.5
+
+### Multivariate Approaches
+- **PCA**: Unsupervised identification of variance-driving proteins
+- **LASSO**: Supervised feature selection with L1 regularization and cross-validation
+
+### Biological Annotation
+- UniProt REST API queries for Sus scrofa protein characterization
+
+## Results
+
+### High-Confidence Biomarkers
+**10 proteins** validated by both traditional statistics AND LASSO (50% convergence rate)
+
+### Novel ML Candidates  
+**20 proteins** identified by PCA/LASSO with large fold changes but p > 0.05 due to small sample size
+
+### Methodological Insight
+Zero overlap between PCA and LASSO selections demonstrates that different multivariate methods capture complementary biological information.
+
+## Technical Stack
+
+```python
+pandas, numpy, scipy          # Data analysis & statistics
+scikit-learn, statsmodels     # Machine learning & FDR correction
+matplotlib, seaborn           # Visualization
+requests                      # UniProt API
+```
+
+## Repository Structure
+
+```
+├── notebook.ipynb                    # Main analysis (11 sections)
+├── data/
+│   └── proteomics_data.xlsx         # LC-MS/MS data
+├── results/
+│   ├── traditional_significant.csv
+│   ├── lasso_selected_proteins.csv
+│   ├── novel_candidates_annotations.csv
+│   ├── validated_proteins_annotations.csv
+│   └── comprehensive_comparison.png
+└── requirements.txt
+```
+
+## Quick Start
+
+```bash
+git clone https://github.com/yourusername/proteomics-ml-reanalysis.git
+cd proteomics-ml-reanalysis
+pip install -r requirements.txt
+jupyter notebook notebook.ipynb
+```
+
+**Run all cells** (Cell → Run All) | **Runtime**: ~5 minutes
+
+## Analysis Pipeline
+
+1. **Environment Setup** - Import libraries and configure settings
+2. **Data Loading & Preparation** - Load Sus scrofa proteomics data
+3. **Data Preprocessing** - Quality filtering and normalization
+4. **Exploratory Data Analysis** - Initial data examination
+5. **Traditional Statistical Analysis** - Mann-Whitney U, FDR correction
+6. **Multivariate Method: PCA** - Unsupervised variance analysis
+7. **Machine Learning: LASSO** - Supervised feature selection
+8. **Comparative Analysis** - Compare methods and find overlaps
+9. **Biological Annotation of Novel ML Candidates** - Annotate 20 proteins with biological signal but p > 0.05
+10. **Biological Annotation of Validated Biomarkers** - Annotate 10 high-confidence proteins validated by both methods
+11. **Conclusions** - Key findings and learning outcomes
+
+## Key Takeaway
+
+**Integration is powerful.** With small sample sizes (n=3), traditional p-values have limited reliability. However, multivariate machine learning methods can extract meaningful biological patterns by analyzing relationships across features rather than testing each protein independently. The 50% validation rate demonstrates substantial methodological convergence, while the complementary discoveries show that different approaches answer different biological questions.
+
+## Skills Demonstrated
+
+- Classical proteomics statistics (normality testing, non-parametric tests, FDR correction)
+- Machine learning for omics (PCA, LASSO, cross-validation)
+- Programmatic biological annotation (UniProt API)
+- Comparative methods analysis
+- Reproducible research practices
+
+## Author
+
+**Alina**  
+MSc Health Data Analytics and Machine Learning (Imperial College London, starting 2026)  
+BSc Biology with Neuroscience (University of Leicester, 2:1)
+
+---
+
+⭐ **Star this repository if you found it useful!**
